@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LB Mithaas – Sweets, Farsan & Dryfruits | Ulhasnagar</title>
+  <meta name="description" content="LB Mithaas – Premium sweets, farsan, dryfruits, snacks and gift packaging at Shivaji Chowk, Ulhasnagar. Order on Zomato or Swiggy." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=Noto+Serif+Devanagari:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --saffron: #E8720C;
+      --deep-saffron: #C45A00;
+      --gold: #D4A017;
+      --cream: #FDF6EC;
+      --dark: #1A0F00;
+      --text: #3D2400;
+      --muted: #8B6040;
+      --card-bg: #FFFBF4;
+      --border: #F0D9B5;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--cream); }
+    ::-webkit-scrollbar-thumb { background: var(--saffron); border-radius: 3px; }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 3rem;
+      background: rgba(253, 246, 236, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    .nav-logo {
+      display: flex; flex-direction: column;
+      font-family: 'Playfair Display', serif;
+    }
+    .nav-logo .lb { font-size: 1.8rem; font-weight: 900; color: var(--saffron); line-height: 1; }
+    .nav-logo .mithaas { font-size: 0.75rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--muted); font-family: 'DM Sans', sans-serif; font-weight: 500; }
+    nav ul { display: flex; gap: 2rem; list-style: none; }
+    nav ul a { text-decoration: none; color: var(--text); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    nav ul a:hover { color: var(--saffron); }
+    .nav-cta {
+      display: flex; gap: 0.75rem;
+    }
+    .btn-nav {
+      padding: 0.5rem 1.25rem; border-radius: 2rem; font-size: 0.85rem; font-weight: 500;
+      cursor: pointer; text-decoration: none; transition: all 0.2s;
+    }
+    .btn-zomato { background: #E23744; color: #fff; border: none; }
+    .btn-swiggy { background: #FC8019; color: #fff; border: none; }
+    .btn-nav:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg-pattern {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        radial-gradient(circle at 20% 50%, rgba(232,114,12,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(212,160,23,0.1) 0%, transparent 40%);
+    }
+    /* Indian mandala-like decorative circles */
+    .hero-decor {
+      position: absolute; right: -80px; top: 50%; transform: translateY(-50%);
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      border: 2px solid rgba(232,114,12,0.15);
+      z-index: 0;
+    }
+    .hero-decor::before {
+      content: '';
+      position: absolute; inset: 30px;
+      border-radius: 50%;
+      border: 2px solid rgba(212,160,23,0.2);
+    }
+    .hero-decor::after {
+      content: '';
+      position: absolute; inset: 60px;
+      border-radius: 50%;
+      border: 2px solid rgba(232,114,12,0.1);
+    }
+
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 4rem 3rem 4rem 6rem;
+      position: relative; z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(232,114,12,0.1); border: 1px solid rgba(232,114,12,0.3);
+      border-radius: 2rem; padding: 0.4rem 1rem;
+      font-size: 0.8rem; font-weight: 500; color: var(--saffron);
+      width: fit-content; margin-bottom: 1.5rem;
+      animation: fadeInUp 0.6s ease both;
+    }
+    .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--saffron); }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-weight: 900; line-height: 1.05;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+      animation: fadeInUp 0.6s 0.1s ease both;
+    }
+    .hero-title .accent { color: var(--saffron); font-style: italic; }
+    .hero-subtitle {
+      font-size: 1.05rem; color: var(--muted); font-weight: 300;
+      line-height: 1.7; max-width: 440px; margin-bottom: 2rem;
+      animation: fadeInUp 0.6s 0.2s ease both;
+    }
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 2.5rem;
+      animation: fadeInUp 0.6s 0.3s ease both;
+    }
+    .tag {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 2rem; padding: 0.35rem 0.9rem;
+      font-size: 0.8rem; color: var(--muted); font-weight: 500;
+    }
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeInUp 0.6s 0.4s ease both;
+    }
+    .btn-primary {
+      padding: 0.85rem 2rem; background: var(--saffron); color: #fff;
+      border: none; border-radius: 0.5rem; font-size: 0.95rem; font-weight: 500;
+      cursor: pointer; text-decoration: none;
+      transition: all 0.25s; display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-primary:hover { background: var(--deep-saffron); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(232,114,12,0.35); }
+    .btn-outline {
+      padding: 0.85rem 2rem; background: transparent; color: var(--text);
+      border: 1.5px solid var(--border); border-radius: 0.5rem; font-size: 0.95rem; font-weight: 500;
+      cursor: pointer; text-decoration: none;
+      transition: all 0.25s; display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-outline:hover { border-color: var(--saffron); color: var(--saffron); transform: translateY(-2px); }
+
+    .hero-right {
+      position: relative; display: flex; align-items: center; justify-content: center;
+      padding: 4rem 3rem;
+      z-index: 1;
+    }
+    .hero-image-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+      max-width: 400px; width: 100%;
+    }
+    .hero-img-card {
+      border-radius: 1rem; overflow: hidden;
+      background: var(--border);
+      aspect-ratio: 1;
+      position: relative;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      animation: fadeInUp 0.6s ease both;
+    }
+    .hero-img-card:nth-child(1) { animation-delay: 0.2s; }
+    .hero-img-card:nth-child(2) { margin-top: 2rem; animation-delay: 0.3s; }
+    .hero-img-card:nth-child(3) { margin-top: -2rem; animation-delay: 0.4s; }
+    .hero-img-card:nth-child(4) { animation-delay: 0.5s; }
+    .hero-img-inner {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-size: 3rem; gap: 0.4rem;
+      background: linear-gradient(135deg, #FFF5E6, #FFE8C8);
+    }
+    .hero-img-inner span { font-size: 0.75rem; font-weight: 600; color: var(--muted); letter-spacing: 0.05em; }
+
+    /* ===== STATS BAR ===== */
+    .stats-bar {
+      background: var(--dark); color: #fff;
+      display: flex; justify-content: space-around; align-items: center;
+      padding: 1.5rem 3rem; flex-wrap: wrap; gap: 1rem;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem; font-weight: 700; color: var(--gold);
+    }
+    .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 0.1rem; }
+    .stat-divider { width: 1px; height: 40px; background: rgba(255,255,255,0.15); }
+
+    /* ===== SECTION SHARED ===== */
+    section { padding: 5rem 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 3rem; }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-tag {
+      display: inline-block; background: rgba(232,114,12,0.1);
+      color: var(--saffron); font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.3rem 0.9rem; border-radius: 2rem; margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 900;
+      color: var(--dark); line-height: 1.2;
+    }
+    .section-sub { color: var(--muted); font-size: 1rem; margin-top: 0.5rem; }
+
+    /* ===== MENU ===== */
+    #menu { background: var(--cream); }
+    .menu-tabs {
+      display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .tab-btn {
+      padding: 0.55rem 1.4rem; border-radius: 2rem; border: 1.5px solid var(--border);
+      background: transparent; color: var(--muted); font-size: 0.88rem; font-weight: 500;
+      cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+    }
+    .tab-btn.active { background: var(--saffron); border-color: var(--saffron); color: #fff; }
+    .tab-btn:hover:not(.active) { border-color: var(--saffron); color: var(--saffron); }
+
+    .menu-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem;
+    }
+    .menu-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 1rem; overflow: hidden;
+      transition: all 0.3s; cursor: default;
+      display: none;
+    }
+    .menu-card.visible { display: block; }
+    .menu-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(232,114,12,0.12); border-color: rgba(232,114,12,0.3); }
+    .card-emoji {
+      background: linear-gradient(135deg, #FFF0D9, #FFE0A8);
+      padding: 1.5rem; display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; aspect-ratio: 16/9;
+    }
+    .card-body { padding: 1.2rem; }
+    .card-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--dark); }
+    .card-desc { font-size: 0.82rem; color: var(--muted); margin-top: 0.3rem; line-height: 1.5; }
+    .card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 0.8rem; }
+    .card-price { font-weight: 700; color: var(--saffron); font-size: 1rem; }
+    .card-badge {
+      font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 1rem;
+      font-weight: 600; letter-spacing: 0.03em;
+    }
+    .badge-veg { background: #E8F5E9; color: #388E3C; }
+    .badge-bestseller { background: #FFF3E0; color: #E65100; }
+    .badge-new { background: #E3F2FD; color: #1565C0; }
+
+    /* ===== ORDER SECTION ===== */
+    #order { background: var(--dark); }
+    .order-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem;
+    }
+    .order-card {
+      border-radius: 1.2rem; padding: 2rem;
+      display: flex; flex-direction: column; gap: 1rem;
+      transition: transform 0.3s;
+    }
+    .order-card:hover { transform: translateY(-4px); }
+    .order-card.zomato { background: linear-gradient(135deg, #E23744, #C0203E); }
+    .order-card.swiggy { background: linear-gradient(135deg, #FC8019, #E66700); }
+    .order-logo { font-size: 1.4rem; font-weight: 800; color: #fff; }
+    .order-desc { color: rgba(255,255,255,0.85); font-size: 0.9rem; line-height: 1.6; }
+    .order-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(255,255,255,0.2); color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.4); border-radius: 0.5rem;
+      padding: 0.75rem 1.5rem; font-weight: 600; font-size: 0.9rem;
+      text-decoration: none; width: fit-content;
+      transition: all 0.2s; backdrop-filter: blur(4px);
+    }
+    .order-btn:hover { background: rgba(255,255,255,0.35); }
+    .order-section-header .section-title { color: #fff; }
+    .order-section-header .section-sub { color: rgba(255,255,255,0.55); }
+
+    /* ===== SPECIALTIES ===== */
+    #specialties { background: #FFF8EE; }
+    .specialty-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .specialty-card {
+      text-align: center; padding: 2rem 1.5rem;
+      border: 1px solid var(--border); border-radius: 1rem;
+      background: var(--card-bg);
+      transition: all 0.3s;
+    }
+    .specialty-card:hover { border-color: var(--saffron); transform: translateY(-4px); box-shadow: 0 10px 30px rgba(232,114,12,0.1); }
+    .specialty-icon { font-size: 2.8rem; margin-bottom: 1rem; }
+    .specialty-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--dark); }
+    .specialty-desc { color: var(--muted); font-size: 0.85rem; margin-top: 0.4rem; line-height: 1.6; }
+
+    /* ===== FESTIVE BANNER ===== */
+    .festive-banner {
+      background: linear-gradient(135deg, var(--saffron), var(--gold));
+      padding: 3rem; text-align: center;
+    }
+    .festive-banner h2 {
+      font-family: 'Playfair Display', serif; font-size: 2rem; color: #fff;
+      font-weight: 900; margin-bottom: 0.5rem;
+    }
+    .festive-banner p { color: rgba(255,255,255,0.85); font-size: 1rem; margin-bottom: 1.5rem; }
+    .festive-banner .btn-white {
+      background: #fff; color: var(--saffron); border: none;
+      padding: 0.85rem 2rem; border-radius: 0.5rem; font-weight: 700;
+      font-size: 0.95rem; cursor: pointer; text-decoration: none;
+      display: inline-block; transition: all 0.2s;
+    }
+    .festive-banner .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+
+    /* ===== CONTACT ===== */
+    #contact { background: var(--cream); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+    .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+    .contact-icon {
+      width: 44px; height: 44px; border-radius: 0.75rem;
+      background: rgba(232,114,12,0.1); display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+    .contact-detail strong { display: block; font-weight: 600; color: var(--dark); margin-bottom: 0.2rem; }
+    .contact-detail span, .contact-detail a {
+      color: var(--muted); font-size: 0.9rem; text-decoration: none;
+    }
+    .contact-detail a:hover { color: var(--saffron); }
+    .map-placeholder {
+      background: linear-gradient(135deg, #FFF0D9, #FFE0A8);
+      border-radius: 1rem; padding: 3rem;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; gap: 1rem; min-height: 280px;
+      border: 1px solid var(--border);
+    }
+    .map-placeholder .map-icon { font-size: 3rem; }
+    .map-placeholder p { color: var(--muted); font-size: 0.9rem; }
+    .map-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      color: var(--saffron); font-weight: 600; font-size: 0.9rem; text-decoration: none;
+    }
+    .map-link:hover { text-decoration: underline; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,0.7);
+      padding: 2rem 3rem; text-align: center;
+    }
+    footer .footer-logo {
+      font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900;
+      color: var(--saffron); margin-bottom: 0.5rem;
+    }
+    footer p { font-size: 0.82rem; }
+    .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin: 1rem 0; }
+    .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--saffron); }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== MOBILE HAMBURGER ===== */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; border: none; background: none; }
+    .hamburger span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
+    .mobile-menu {
+      display: none; position: fixed; top: 65px; left: 0; right: 0;
+      background: var(--cream); border-bottom: 1px solid var(--border);
+      padding: 1.5rem; z-index: 99; flex-direction: column; gap: 1rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: var(--text); text-decoration: none; font-weight: 500; font-size: 1rem; padding: 0.5rem 0; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      nav ul { display: none; }
+      .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 3rem 1.5rem 2rem; }
+      .hero-right { display: none; }
+      .stats-bar { padding: 1.5rem; }
+      .stat-divider { display: none; }
+      .order-grid { grid-template-columns: 1fr; }
+      .specialty-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .container { padding: 0 1.5rem; }
+      nav { padding: 1rem 1.5rem; }
+    }
+    @media (max-width: 500px) {
+      .specialty-grid { grid-template-columns: 1fr; }
+      .menu-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <span class="lb">LB Mithaas</span>
+    <span class="mithaas">Ulhasnagar's Finest</span>
+  </div>
+  <ul>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#specialties">Our Story</a></li>
+    <li><a href="#order">Order Online</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="https://www.zomato.com/mumbai/lb-mithaas-ulhasnagar-thane" target="_blank" class="btn-nav btn-zomato">🍽️ Zomato</a>
+    <a href="https://www.swiggy.com/city/mumbai/l-b-mithaas-shivaji-chowk-ulhasnagar-rest520630" target="_blank" class="btn-nav btn-swiggy">🛵 Swiggy</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#menu" onclick="closeMobile()">Menu</a>
+  <a href="#specialties" onclick="closeMobile()">Our Story</a>
+  <a href="#order" onclick="closeMobile()">Order Online</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="https://www.zomato.com/mumbai/lb-mithaas-ulhasnagar-thane" target="_blank" style="color:#E23744; font-weight:700;">🍽️ Order on Zomato</a>
+  <a href="https://www.swiggy.com/city/mumbai/l-b-mithaas-shivaji-chowk-ulhasnagar-rest520630" target="_blank" style="color:#FC8019; font-weight:700;">🛵 Order on Swiggy</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-decor"></div>
+  <div class="hero-left">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Open Today · 9:45 AM – 10:00 PM
+    </div>
+    <h1 class="hero-title">
+      Taste of <span class="accent">Tradition,</span><br>
+      Made Fresh Daily
+    </h1>
+    <p class="hero-subtitle">
+      Ulhasnagar's beloved sweet shop — crafting premium mithai, crispy farsan, handpicked dryfruits, and festive gift boxes since day one. Every bite tells a story.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">🍬 Sweets</span>
+      <span class="tag">🥜 Dryfruits</span>
+      <span class="tag">🧆 Farsan</span>
+      <span class="tag">🎁 Gift Boxes</span>
+      <span class="tag">🍭 Snacks</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#menu" class="btn-primary">Explore Menu ↓</a>
+      <a href="#order" class="btn-outline">Order Online 🛵</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-image-grid">
+      <div class="hero-img-card">
+        <div class="hero-img-inner">
+          <img src="gulab-jamun.jpg" alt="Gulab Jamun" width="300" height="600">
+          <span>Gulab Jamun</span>
+        </div>
+      </div>
+      <div class="hero-img-card">
+        <div class="hero-img-inner">
+          <img src="kaju-katli.png" alt="Kaju Katli" width="300" height="600">
+          <span>Kaju Katli</span>
+        </div>
+      </div>
+      <div class="hero-img-card">
+        <div class="hero-img-inner">
+          <img src="basen-ladoo.png" alt="Ladoo" width="300" height="600">
+          <span>Ladoo</span>
+        </div>
+      </div>
+      <div class="hero-img-card">
+        <div class="hero-img-inner">
+          <img src="gift-box.jpg" alt="Gift Box" width="200" height="600">
+          <span>Gift Box</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-num">1000+</div>
+    <div class="stat-label">Happy Customers</div>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat">
+    <div class="stat-num">4.1★</div>
+    <div class="stat-label">Justdial Rating</div>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat">
+    <div class="stat-num">50+</div>
+    <div class="stat-label">Menu Items</div>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat">
+    <div class="stat-num">9:45AM</div>
+    <div class="stat-label">Opens Daily</div>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat">
+    <div class="stat-num">10PM</div>
+    <div class="stat-label">Closes Daily</div>
+  </div>
+</div>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Our Menu</span>
+      <h2 class="section-title">Fresh Every Day, Made with Love</h2>
+      <p class="section-sub">Handcrafted using authentic recipes and premium ingredients</p>
+    </div>
+
+    <div class="menu-tabs">
+      <button class="tab-btn active" onclick="filterMenu('all')">All Items</button>
+      <button class="tab-btn" onclick="filterMenu('sweets')">🍬 Sweets</button>
+      <button class="tab-btn" onclick="filterMenu('farsan')">🧆 Farsan & Snacks</button>
+      <button class="tab-btn" onclick="filterMenu('dryfruits')">🥜 Dryfruits</button>
+      <button class="tab-btn" onclick="filterMenu('gifts')">🎁 Gift Boxes</button>
+    </div>
+
+    <div class="menu-grid" id="menuGrid">
+      <!-- SWEETS -->
+      <div class="menu-card visible" data-cat="sweets">
+        <img src="gulab-jamun.jpg" alt="Gulab Jamun" width="100%" height="60%">
+        <div class="card-body">
+          <div class="card-name">Gulab Jamun</div>
+          <div class="card-desc">Soft milk-solid dumplings soaked in rose-cardamom sugar syrup. A timeless classic.</div>
+          <div class="card-footer">
+            <span class="card-price">₹ 20 / pc</span>
+            <span class="card-badge badge-bestseller">⭐ Bestseller</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card visible" data-cat="sweets">
+        <img src="kaju-katli.png" alt="Kaju Katli" width="100%" height="60%">
+        <div class="card-body">
+          <div class="card-name">Kaju Katli</div>
+          <div class="card-desc">Premium cashew fudge with delicate silver leaf, crafted to perfection for every occasion.</div>
+          <div class="card-footer">
+            <span class="card-price">₹ 850 / kg</span>
+            <span class="card-badge badge-new">✨ Special</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card visible" data-cat="sweets">
+        <img src="basen-ladoo.png" alt="Besan Ladoo" width="100%" height="60%">
+        <div class="card-body">
+          <div class="card-name">Besan Ladoo</div>
+          <div class="card-desc">Roasted gram flour ladoos with ghee and cardamom — the authentic homemade taste.</div>
+          <div class="card-footer">
+            <span class="card-price">₹ 25 / pc</span>
+            <span class="card-badge badge-bestseller">⭐ Bestseller</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card visible" data-cat="sweets">
+        <div class="card-emoji">🍯</div>
+        <div class="card-body">
+          <div class="card-name">Jalebi</div>
+          <div class="card-desc">Crispy spirals fried golden and dipped in warm saffron syrup. Served fresh daily.</div>
+          <div class="card-footer">
+            <span class="card-price">₹ 20 / 100g</span>
+            <span class="card-badge badge-new">✨ Special</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card visible" data-cat="sweets">
+        <div class="card-emoji">🍬</div>
+        <div class="card-body">
+          <div class="card-name">Kala Jamun</div>
+          <div class="card-desc">Dark, caramelised cousin of gulab jamun with a luscious stuffed centre.</div>
+          <div class="card-footer">
+            <span class="card-price">₹ 35 / pc</span>
+            <span class="card-badge badge-new">✨ Special</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card visible" data-cat="sweets">
+        <div class="card-emoji">🟤</div>
+        <div class="card-body">
+          <div class="card-name">Halwa (Gajar / Moong)</div>
+          <div class="card-desc">Slow-cooked halwa with pure ghee, garnished with nuts. Available in seasonal varieties.</div>
+          <div class="card-footer">
+            <span class="card-price">₹ 40 / 100g</span>
+            <span class="card-badge badge-new">🌿 Seasonal</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card visible" data-cat="sweets">
+        <div class="card-emoji">⬜</div>
+        <div class="card-body">
+          <div class="card-name">Barfi (Mix / Kaju / Coconut)</div>
+          <div class="card-desc">Classic Indian fudge in multiple varieties — plain, kaju, coconut and more.</div>
+          <div class="card-footer">
+            <span class="card-price">₹ 60 / 100g</span>
+            <span class="card-badge badge-new">✨ Special</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card visible" data-cat="sweets">
+        <div class="card-emoji">🌸</div>
+        <div class="card-body">
+          <div class="card-name">Rasmalai</div>
+          <div class="card-desc">Chenna dumplings floating in chilled saffron milk, garnished with pistachios.</div>
+          <div class="card-footer">
+            <span class="card-price">₹ 50 / pc</span>
+            <span class="card-badge badge-bestseller">⭐ Bestseller</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FARSAN -->
+      <div class="menu-card visible" data-cat="farsan">
+        <div class="card-emoji">🥟</div>
+        <div class="card-body">
+          <div class="card-name">Samosa</div>
+          <div class="card-desc">Crispy golden pastry stuffed with spiced potato and peas. Best with green chutney.</div>
+          <div class="card-footer">
+            <span class="card-price">₹ 15 / pc</span>
+            <span class="card-badge badge-bestseller">⭐ Bestseller</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card visible" data-cat="farsan">
+        <div class="card-emoji">🌀</div>
+        <div class="card-body">
+          <div class="card-name">Chakli</div>
+          <div class="card-desc">Crunchy spiral snack made from rice flour — perfectly salted, light and addictive.</div>
+          <div class="card-footer">
+            <span class="card-price">₹ 60 / 200g</span>
+            <span class="card-badge badge-new">✨ Special</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card visible" data-cat="farsan">
+        <div class="card-emoji">🟡</div>
+        <div class="card-body">
+          <div class="card-name">Sev & Namkeen Mix</div>
+          <div class="card-desc">Classic gram flour vermicelli with spices, and premium namkeen mixes for snacking.</div>
+          <div class="card-footer">
+            <span class="card-price">₹ 50 / 200g</span>
+            <span class="card-badge badge-new">✨ Special</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card visible" data-cat="farsan">
+        <div class="card-emoji">🫓</div>
+        <div class="card-body">
+          <div class="card-name">Kachori</div>
+          <div class="card-desc">Flaky fried bread stuffed with spiced moong or onion filling — a tea-time favourite.</div>
+          <div class="card-footer">
+            <span class="card-price">₹ 20 / pc</span>
+            <span class="card-badge badge-new">🔥 Popular</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card visible" data-cat="farsan">
+        <div class="card-emoji">🧆</div>
+        <div class="card-body">
+          <div class="card-name">Methi Mathri</div>
+          <div class="card-desc">Flaky biscuits with fenugreek leaves — a crunchy, savoury indulgence.</div>
+          <div class="card-footer">
+            <span class="card-price">₹ 70 / 250g</span>
+            <span class="card-badge badge-new">✨ Special</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DRYFRUITS -->
+      <div class="menu-card visible" data-cat="dryfruits">
+        <div class="card-emoji">🥜</div>
+        <div class="card-body">
+          <div class="card-name">Premium Cashews</div>
+          <div class="card-desc">Large, whole W180 grade cashews — roasted, salted, or natural. Fresh stock always.</div>
+          <div class="card-footer">
+            <span class="card-price">₹ 90 / 100g</span>
+            <span class="card-badge badge-new">✨ Premium</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card visible" data-cat="dryfruits">
+        <div class="card-emoji">🌰</div>
+        <div class="card-body">
+          <div class="card-name">Badam (Almonds)</div>
+          <div class="card-desc">California almonds, whole and sliced. Rich in nutrients, perfect for gifting.</div>
+          <div class="card-footer">
+            <span class="card-price">₹ 80 / 100g</span>
+            <span class="card-badge badge-new">✨ Special</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card visible" data-cat="dryfruits">
+        <div class="card-emoji">💚</div>
+        <div class="card-body">
+          <div class="card-name">Pista (Pistachio)</div>
+          <div class="card-desc">Vibrant green pistachios from finest farms. Shelled and unshelled varieties available.</div>
+          <div class="card-footer">
+            <span class="card-price">₹ 120 / 100g</span>
+            <span class="card-badge badge-new">✨ Premium</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card visible" data-cat="dryfruits">
+        <div class="card-emoji">🍇</div>
+        <div class="card-body">
+          <div class="card-name">Raisins & Dates Mix</div>
+          <div class="card-desc">Soft seedless raisins and Medjool dates — naturally sweet, energy-rich snacking.</div>
+          <div class="card-footer">
+            <span class="card-price">₹ 60 / 200g</span>
+            <span class="card-badge badge-new">✨ Special</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- GIFTS -->
+      <div class="menu-card visible" data-cat="gifts">
+        <div class="card-emoji">🎁</div>
+        <div class="card-body">
+          <div class="card-name">Festival Gift Box</div>
+          <div class="card-desc">Curated assortment of premium sweets and dryfruits in beautiful festive packaging.</div>
+          <div class="card-footer">
+            <span class="card-price">From ₹ 299</span>
+            <span class="card-badge badge-new">🎊 Festive</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card visible" data-cat="gifts">
+        <div class="card-emoji">📦</div>
+        <div class="card-body">
+          <div class="card-name">Corporate Hamper</div>
+          <div class="card-desc">Custom-branded hampers for businesses — sweets, farsan, dryfruits and more. Bulk orders welcome.</div>
+          <div class="card-footer">
+            <span class="card-price">From ₹ 599</span>
+            <span class="card-badge badge-new">🏢 Corporate</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card visible" data-cat="gifts">
+        <div class="card-emoji">💝</div>
+        <div class="card-body">
+          <div class="card-name">Wedding Sweet Box</div>
+          <div class="card-desc">Elegant boxes filled with assorted sweets for weddings, engagements, and celebrations.</div>
+          <div class="card-footer">
+            <span class="card-price">From ₹ 199</span>
+            <span class="card-badge badge-bestseller">💍 Popular</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FESTIVE BANNER -->
+<div class="festive-banner">
+  <h2>🎊 Festive Season Special Orders</h2>
+  <p>Diwali, Holi, Eid, Christmas — we craft custom sweet boxes for every occasion. Bulk orders welcome!</p>
+  <a href="tel:+918055519000" class="btn-white">📞 Call to Order: +91 80555 19000</a>
+</div>
+
+<!-- SPECIALTIES -->
+<section id="specialties">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Why LB Mithaas</span>
+      <h2 class="section-title">Our Promise to You</h2>
+      <p class="section-sub">Every product made with care, tradition, and the finest ingredients</p>
+    </div>
+    <div class="specialty-grid">
+      <div class="specialty-card">
+        <div class="specialty-icon">🌿</div>
+        <div class="specialty-title">100% Pure Ingredients</div>
+        <div class="specialty-desc">Only the finest quality ingredients — no artificial colours, no compromise on purity.</div>
+      </div>
+      <div class="specialty-card">
+        <div class="specialty-icon">👨‍🍳</div>
+        <div class="specialty-title">Made Fresh Daily</div>
+        <div class="specialty-desc">Every mithai and farsan is prepared fresh each morning so you always get the best.</div>
+      </div>
+      <div class="specialty-card">
+        <div class="specialty-icon">🎁</div>
+        <div class="specialty-title">Custom Gift Packaging</div>
+        <div class="specialty-desc">Beautiful, hygienic gift packing for all occasions — corporate or personal.</div>
+      </div>
+      <div class="specialty-card">
+        <div class="specialty-icon">🥜</div>
+        <div class="specialty-title">Premium Dryfruits</div>
+        <div class="specialty-desc">Fresh stock of handpicked dryfruits sourced from the best farms across India.</div>
+      </div>
+      <div class="specialty-card">
+        <div class="specialty-icon">⭐</div>
+        <div class="specialty-title">4.1★ Trusted Rating</div>
+        <div class="specialty-desc">Rated 4.1 stars with over 1000 ratings on Justdial by happy customers.</div>
+      </div>
+      <div class="specialty-card">
+        <div class="specialty-icon">🛵</div>
+        <div class="specialty-title">Online Delivery</div>
+        <div class="specialty-desc">Order easily on Zomato and Swiggy for quick delivery right to your door.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER ONLINE -->
+<section id="order">
+  <div class="container">
+    <div class="section-header order-section-header">
+      <span class="section-tag">Order Online</span>
+      <h2 class="section-title">Mithaas, Delivered to Your Door</h2>
+      <p class="section-sub">Order your favourite sweets and snacks right from your phone</p>
+    </div>
+    <div class="order-grid">
+      <div class="order-card zomato">
+        <div class="order-logo">🍽️ Zomato</div>
+        <p class="order-desc">Order your favourite sweets, farsan and snacks from LB Mithaas on Zomato. Fast delivery, easy tracking, and reliable service.</p>
+        <a href="https://www.zomato.com/mumbai/lb-mithaas-ulhasnagar-thane" target="_blank" class="order-btn">
+          Order on Zomato →
+        </a>
+      </div>
+      <div class="order-card swiggy">
+        <div class="order-logo">🛵 Swiggy</div>
+        <p class="order-desc">Get your mithai delivered fresh from LB Mithaas via Swiggy. Quick delivery to your doorstep in Ulhasnagar and nearby areas.</p>
+        <a href="https://www.swiggy.com/city/mumbai/l-b-mithaas-shivaji-chowk-ulhasnagar-rest520630" target="_blank" class="order-btn">
+          Order on Swiggy →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Find Us</span>
+      <h2 class="section-title">Visit Us at Shivaji Chowk</h2>
+      <p class="section-sub">We'd love to see you in store — or just give us a call!</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-detail">
+            <strong>Address</strong>
+            <span>Shop No. 676-A, Kalyan–Ambernath Road,<br>Shivaji Chowk, Ulhasnagar Camp 3,<br>Ulhasnagar – 421003, Maharashtra</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div class="contact-detail">
+            <strong>Phone</strong>
+            <a href="tel:+918055519000">+91 80555 19000</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div class="contact-detail">
+            <strong>Email</strong>
+            <a href="mailto:lbmithaas@gmail.com">lbmithaas@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div class="contact-detail">
+            <strong>Hours</strong>
+            <span>Monday – Sunday: 9:45 AM – 10:00 PM</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">💬</div>
+          <div class="contact-detail">
+            <strong>WhatsApp</strong>
+            <a href="https://wa.me/918055519000" target="_blank">Chat on WhatsApp</a>
+          </div>
+        </div>
+      </div>
+      <div class="map-placeholder">
+        <div class="map-icon">🗺️</div>
+        <p><strong>LB Mithaas</strong><br>Shop 676-A, Shivaji Chowk<br>Ulhasnagar, Maharashtra</p>
+        <a href="https://maps.google.com/?q=LB+Mithaas+Ulhasnagar" target="_blank" class="map-link">
+          📍 Open in Google Maps →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">LB Mithaas</div>
+  <div class="footer-links">
+    <a href="#menu">Menu</a>
+    <a href="#order">Order Online</a>
+    <a href="https://www.zomato.com/mumbai/lb-mithaas-ulhasnagar-thane" target="_blank">Zomato</a>
+    <a href="https://www.swiggy.com/city/mumbai/l-b-mithaas-shivaji-chowk-ulhasnagar-rest520630" target="_blank">Swiggy</a>
+    <a href="tel:+918055519000">Call Us</a>
+  </div>
+  <p>Sweets | Farsan | Dryfruits | Gift Packaging · Shivaji Chowk, Ulhasnagar</p>
+  <p style="margin-top:0.5rem; font-size:0.75rem; opacity:0.4;">© 2025 LB Mithaas. All rights reserved.</p>
+</footer>
+
+<script>
+  // Menu filter
+  function filterMenu(cat) {
+    const cards = document.querySelectorAll('.menu-card');
+    const btns = document.querySelectorAll('.tab-btn');
+    btns.forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    cards.forEach(c => {
+      if (cat === 'all' || c.dataset.cat === cat) {
+        c.classList.add('visible');
+        c.style.display = 'block';
+      } else {
+        c.classList.remove('visible');
+        c.style.display = 'none';
+      }
+    });
+  }
+
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMobile() {
+    mobileMenu.classList.remove('open');
+  }
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.animation = 'fadeInUp 0.5s ease forwards';
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.menu-card, .specialty-card, .order-card, .contact-item').forEach(el => {
+    el.style.opacity = '0';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
