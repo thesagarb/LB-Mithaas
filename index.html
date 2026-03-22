@@ -240,18 +240,36 @@
       border-radius: 1rem; overflow: hidden;
       transition: all 0.3s; cursor: default;
       display: none;
+      min-height: 400px; /* Ensures consistent minimum height */
     }
-    .menu-card.visible { display: block; }
+    .menu-card.visible { display: flex; flex-direction: column; }
     .menu-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(232,114,12,0.12); border-color: rgba(232,114,12,0.3); }
+    .menu-card img {
+      height: 250px; /* Fixed height for images */
+      object-fit: cover; /* Ensures proper image scaling */
+      width: 100%;
+    }
     .card-emoji {
       background: linear-gradient(135deg, #FFF0D9, #FFE0A8);
       padding: 1.5rem; display: flex; align-items: center; justify-content: center;
       font-size: 3rem; aspect-ratio: 16/9;
     }
-    .card-body { padding: 1.2rem; }
+    .card-body { 
+      padding: 1.2rem; 
+      flex: 1; /* Takes up remaining space */
+      display: flex; 
+      flex-direction: column; 
+    }
     .card-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--dark); }
-    .card-desc { font-size: 0.82rem; color: var(--muted); margin-top: 0.3rem; line-height: 1.5; }
-    .card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 0.8rem; }
+    .card-desc { 
+      font-size: 0.82rem; color: var(--muted); margin-top: 0.3rem; line-height: 1.5; 
+      flex: 1; /* Allows description to take available space */
+      margin-bottom: 0.8rem;
+    }
+    .card-footer { 
+      display: flex; align-items: center; justify-content: space-between; 
+      margin-top: auto; /* Pushes footer to bottom */
+    }
     .card-price { font-weight: 700; color: var(--saffron); font-size: 1rem; }
     .card-badge {
       font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 1rem;
@@ -396,10 +414,16 @@
       .contact-grid { grid-template-columns: 1fr; }
       .container { padding: 0 1.5rem; }
       nav { padding: 1rem 1.5rem; }
+      .menu-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+      .menu-card { min-height: 300px; }
+      .menu-card img { height: 160px; }
     }
     @media (max-width: 500px) {
       .specialty-grid { grid-template-columns: 1fr; }
       .menu-grid { grid-template-columns: 1fr; }
+      .menu-card { min-height: 280px; }
+      .menu-card img { height: 140px; }
+      .card-body { padding: 1rem; }
     }
   </style>
 </head>
@@ -547,7 +571,7 @@
     <div class="menu-grid" id="menuGrid">
       <!-- SWEETS -->
       <div class="menu-card visible" data-cat="sweets">
-        <img src="gulab-jamun.jpg" alt="Gulab Jamun" width="100%" height="70%">
+        <img src="gulab-jamun.jpg" alt="Gulab Jamun" width="100%"height="60%">
         <div class="card-body">
           <div class="card-name">Gulab Jamun</div>
           <div class="card-desc">Soft milk-solid dumplings soaked in rose-cardamom sugar syrup. A timeless classic.</div>
@@ -558,7 +582,7 @@
         </div>
       </div>
       <div class="menu-card visible" data-cat="sweets">
-        <img src="kaju-katli.png" alt="Kaju Katli" width="100%" height="70%">
+        <img src="kaju-katli.png" alt="Kaju Katli" width="100%"height="60%">
         <div class="card-body">
           <div class="card-name">Kaju Katli</div>
           <div class="card-desc">Premium cashew fudge with delicate silver leaf, crafted to perfection for every occasion.</div>
@@ -569,7 +593,7 @@
         </div>
       </div>
       <div class="menu-card visible" data-cat="sweets">
-        <img src="basen-ladoo.png" alt="Besan Ladoo" width="100%" height="70%">
+        <img src="basen-ladoo.png" alt="Besan Ladoo" width="100%"height="60%">
         <div class="card-body">
           <div class="card-name">Besan Ladoo</div>
           <div class="card-desc">Roasted gram flour ladoos with ghee and cardamom — the authentic homemade taste.</div>
@@ -580,7 +604,7 @@
         </div>
       </div>
       <div class="menu-card visible" data-cat="sweets">
-        <img src="Jalebi.jpg" alt="Jalebi" width="100%" height="70%">
+        <img src="Jalebi.jpg" alt="Jalebi" width="100%"height="60%">
         <div class="card-body">
           <div class="card-name">Jalebi</div>
           <div class="card-desc">Crispy spirals fried golden and dipped in warm saffron syrup. Served fresh daily.</div>
@@ -591,7 +615,7 @@
         </div>
       </div>
       <div class="menu-card visible" data-cat="sweets">
-        <img src="Kala Jamun.webp" alt="Kala Jamun" width="100%" height="70%">
+        <img src="Kala Jamun.webp" alt="Kala Jamun" width="100%"height="60%">
         <div class="card-body">
           <div class="card-name">Kala Jamun</div>
           <div class="card-desc">Dark, caramelised cousin of gulab jamun with a luscious stuffed centre.</div>
@@ -602,7 +626,7 @@
         </div>
       </div>
       <div class="menu-card visible" data-cat="sweets">
-        <img src="moongdal-gajar-halva.png" alt="Gajar Moong Halwa" width="100%" height="70%">
+        <img src="moongdal-gajar-halva.png" alt="Gajar Moong Halwa" width="100%"height="60%">
         <div class="card-body">
           <div class="card-name">Halwa (Gajar / Moong)</div>
           <div class="card-desc">Slow-cooked halwa with pure ghee, garnished with nuts. Available in seasonal varieties.</div>
@@ -613,7 +637,7 @@
         </div>
       </div>
       <div class="menu-card visible" data-cat="sweets">
-        <img src="coconut barfi.jpg" alt="Coconut Barfi" width="100%" height="70%">
+        <img src="coconut barfi.jpg" alt="Coconut Barfi" width="100%"height="60%">
         <div class="card-body">
           <div class="card-name">Barfi (Mix / Kaju / Coconut)</div>
           <div class="card-desc">Classic Indian fudge in multiple varieties — plain, kaju, coconut and more.</div>
@@ -624,7 +648,7 @@
         </div>
       </div>
       <div class="menu-card visible" data-cat="sweets">
-        <img src="Rasmalai.jpg" alt="Rasmalai" width="100%" height="70%">
+        <img src="Rasmalai.jpg" alt="Rasmalai" width="100%"height="60%">
         <div class="card-body">
           <div class="card-name">Rasmalai</div>
           <div class="card-desc">Chenna dumplings floating in chilled saffron milk, garnished with pistachios.</div>
@@ -637,7 +661,7 @@
 
       <!-- FARSAN -->
       <div class="menu-card visible" data-cat="farsan">
-        <img src="Banana Chips.webp" alt="Banana Chips" width="100%" height="70%">
+        <img src="Banana Chips.webp" alt="Banana Chips" width="100%"height="60%">
         <div class="card-body">
           <div class="card-name">Banana Chips</div>
           <div class="card-desc">Crispy golden chips made from fresh bananas, lightly salted for a perfect snack.</div>
@@ -648,7 +672,7 @@
         </div>
       </div>
       <div class="menu-card visible" data-cat="farsan">
-        <img src="Chakli.jpg" alt="Chakli" width="100%" height="70%">
+        <img src="Chakli.jpg" alt="Chakli" width="100%"height="60%">
         <div class="card-body">
           <div class="card-name">Chakli</div>
           <div class="card-desc">Crunchy spiral snack made from rice flour — perfectly salted, light and addictive.</div>
@@ -659,7 +683,7 @@
         </div>
       </div>
       <div class="menu-card visible" data-cat="farsan">
-        <img src="Sev & Namkeen Mix .jpg" alt="Sev & Namkeen Mix" width="100%" height="70%">
+        <img src="Sev & Namkeen Mix .jpg" alt="Sev & Namkeen Mix" width="100%"height="60%">
         <div class="card-body">
           <div class="card-name">Sev & Namkeen Mix</div>
           <div class="card-desc">Classic gram flour vermicelli with spices, and premium namkeen mixes for snacking.</div>
@@ -670,7 +694,7 @@
         </div>
       </div>
       <div class="menu-card visible" data-cat="farsan">
-        <img src="Kachodi.avif" alt="Kachodi" width="100%" height="70%">
+        <img src="Kachodi.avif" alt="Kachodi" width="100%"height="60%">
         <div class="card-body">
           <div class="card-name">Kachodi</div>
           <div class="card-desc">Flaky fried bread stuffed with spiced moong or onion filling — a tea-time favourite.</div>
@@ -681,7 +705,7 @@
         </div>
       </div>
       <div class="menu-card visible" data-cat="farsan">
-        <img src="Methi Mathri .webp" alt="Methi Mathri" width="100%" height="70%">
+        <img src="Methi Mathri .webp" alt="Methi Mathri" width="100%"height="60%">
         <div class="card-body">
           <div class="card-name">Methi Mathri</div>
           <div class="card-desc">Flaky biscuits with fenugreek leaves — a crunchy, savoury indulgence.</div>
@@ -694,7 +718,7 @@
 
       <!-- DRYFRUITS -->
       <div class="menu-card visible" data-cat="dryfruits">
-        <img src="Premium Cashews .webp" alt="Premium Cashews" width="100%" height="70%">
+        <img src="Premium Cashews .webp" alt="Premium Cashews" width="100%"height="60%">
         <div class="card-body">
           <div class="card-name">Premium Cashews</div>
           <div class="card-desc">Large, whole W180 grade cashews — roasted, salted, or natural. Fresh stock always.</div>
@@ -705,7 +729,7 @@
         </div>
       </div>
       <div class="menu-card visible" data-cat="dryfruits">
-        <img src="Almonds.jpg" alt="Almonds" width="100%" height="70%">
+        <img src="Almonds.jpg" alt="Almonds" width="100%"height="60%">
         <div class="card-body">
           <div class="card-name">Badam (Almonds)</div>
           <div class="card-desc">California almonds, whole and sliced. Rich in nutrients, perfect for gifting.</div>
@@ -716,7 +740,7 @@
         </div>
       </div>
       <div class="menu-card visible" data-cat="dryfruits">
-        <img src="Pista.webp" alt="Pista" width="100%" height="70%">
+        <img src="Pista.webp" alt="Pista" width="100%"height="60%">
         <div class="card-body">
           <div class="card-name">Pista (Pistachio)</div>
           <div class="card-desc">Vibrant green pistachios from finest farms. Shelled and unshelled varieties available.</div>
@@ -727,7 +751,7 @@
         </div>
       </div>
       <div class="menu-card visible" data-cat="dryfruits">
-        <img src="Raisins & Dates Mix .webp" alt="Raisins & Dates Mix" width="100%" height="70%">
+        <img src="Raisins & Dates Mix .webp" alt="Raisins & Dates Mix" width="100%"height="60%">
         <div class="card-body">
           <div class="card-name">Raisins & Dates Mix</div>
           <div class="card-desc">Soft seedless raisins and Medjool dates — naturally sweet, energy-rich snacking.</div>
@@ -740,7 +764,7 @@
 
       <!-- GIFTS -->
       <div class="menu-card visible" data-cat="gifts">
-        <img src="Festival Gift Box .jpg" alt="Festival Gift Box" width="100%" height="70%">
+        <img src="Festival Gift Box .jpg" alt="Festival Gift Box" width="100%"height="60%">
         <div class="card-body">
           <div class="card-name">Festival Gift Box</div>
           <div class="card-desc">Curated assortment of premium sweets and dryfruits in beautiful festive packaging.</div>
@@ -751,7 +775,7 @@
         </div>
       </div>
       <div class="menu-card visible" data-cat="gifts">
-        <img src="Corporate Hamper.webp" alt="Corporate Hamper" width="100%" height="70%">
+        <img src="Corporate Hamper.webp" alt="Corporate Hamper" width="100%"height="60%">
         <div class="card-body">
           <div class="card-name">Corporate Hamper</div>
           <div class="card-desc">Custom-branded hampers for businesses — sweets, farsan, dryfruits and more. Bulk orders welcome.</div>
@@ -762,7 +786,7 @@
         </div>
       </div>
       <div class="menu-card visible" data-cat="gifts">
-        <img src="Wedding Sweet Box.webp" alt="Wedding Sweet Box" width="100%" height="70%">
+        <img src="Wedding Sweet Box.webp" alt="Wedding Sweet Box" width="100%"height="60%">
         <div class="card-body">
           <div class="card-name">Wedding Sweet Box</div>
           <div class="card-desc">Elegant boxes filled with assorted sweets for weddings, engagements, and celebrations.</div>
