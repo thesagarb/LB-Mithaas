@@ -465,9 +465,9 @@
   <div class="hero-bg-pattern"></div>
   <div class="hero-decor"></div>
   <div class="hero-left">
-    <div class="hero-badge">
-      <span class="dot"></span>
-      Open Today · 9:45 AM – 10:00 PM
+    <div class="hero-badge" id="shopStatus">
+      <span class="dot" id="statusDot"></span>
+      <span id="statusText">Open Today · 9:45 AM – 10:00 PM</span>
     </div>
     <h1 class="hero-title">
       Taste of <span class="accent">Tradition,</span><br>
@@ -989,6 +989,56 @@
     el.style.opacity = '0';
     observer.observe(el);
   });
+
+  // Shop status logic
+  function updateShopStatus() {
+    // console.log('Updating shop status...', new Date().toLocaleTimeString());
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMinutes = now.getMinutes();
+    const currentTime = currentHour * 60 + currentMinutes; // Convert to minutes since midnight
+
+    // console.log(`Current time: ${currentHour}:${currentMinutes.toString().padStart(2, '0')} (${currentTime} minutes)`);
+    
+    // Shop hours: 9:45 AM (585 minutes) to 10:00 PM (1320 minutes)
+    const openTime = 9 * 60 + 45; // 9:45 AM = 585 minutes
+    const closeTime = 22 * 60; // 10:00 PM = 1320 minutes
+    
+    // console.log(`Shop hours: ${openTime} to ${closeTime} minutes`);
+    
+    const statusText = document.getElementById('statusText');
+    const statusDot = document.getElementById('statusDot');
+    const shopStatus = document.getElementById('shopStatus');
+    
+    if (!statusText || !statusDot || !shopStatus) {
+      console.error('Could not find status elements');
+      return;
+    }
+    
+    if (currentTime >= openTime && currentTime < closeTime) {
+      // Shop is open
+      // console.log('Shop is OPEN');
+      statusText.textContent = 'Open Now · Closes at 10:00 PM';
+      statusDot.style.background = '#22c55e'; // Green dot
+      shopStatus.style.background = 'rgba(34, 197, 94, 0.1)';
+      shopStatus.style.borderColor = 'rgba(34, 197, 94, 0.3)';
+      shopStatus.style.color = '#22c55e';
+    } else {
+      // Shop is closed
+      // console.log('Shop is CLOSED');
+      const nextDay = currentTime >= closeTime ? ' Tomorrow' : '';
+      statusText.textContent = `Opens${nextDay} at 9:45 AM`;
+      statusDot.style.background = '#ef4444'; // Red dot
+      shopStatus.style.background = 'rgba(239, 68, 68, 0.1)';
+      shopStatus.style.borderColor = 'rgba(239, 68, 68, 0.3)';
+      shopStatus.style.color = '#ef4444';
+    }
+  }
+  
+  // Since script is at the end of <body>, DOM is ready
+  // console.log('Script loaded, initializing shop status...');
+  updateShopStatus();
+  setInterval(updateShopStatus, 60000); // Update every minute
 </script>
 </body>
 </html>
